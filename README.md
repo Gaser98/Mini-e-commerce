@@ -90,7 +90,7 @@ Stores customer account data.
 This project uses Postgres running in Docker, mapped as:
 
 ```
-8040 -> 5432
+8040 -> 5432  #more secure to use a different port than the default
 ```
 
 ### Start the database:
