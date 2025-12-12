@@ -23,7 +23,7 @@ CREATE TABLE `categories` (
 CREATE TABLE `product_categories` (
   `product_id` int NOT NULL,
   `category_id` int NOT NULL,
-  `primary` key(product_id,category_id)
+   primary key(product_id,category_id)
 );
 
 CREATE TABLE `orders` (
