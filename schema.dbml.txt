@@ -1,0 +1,45 @@
+Project ecommerce
+
+Table users {
+  id int [pk, increment]
+  email varchar(255) [not null, unique]
+  full_name varchar(255)
+  created_at timestamp [default: `now()`]
+}
+
+Table products {
+  id int [pk, increment]
+  sku varchar(64) [not null, unique]
+  name varchar(255) [not null]
+  description text
+  price decimal(10,2) [not null]
+  available bool [default: true]
+  created_at timestamp [default: `now()`]
+}
+
+Table categories {
+  id int [pk, increment]
+  name varchar(100) [not null, unique]
+}
+
+Table product_categories {
+  product_id int [ref: > products.id, not null]
+  category_id int [ref: > categories.id, not null]
+  primary key (product_id, category_id)
+}
+
+Table orders {
+  id int [pk, increment]
+  user_id int [ref: > users.id, not null]
+  status varchar(50) [default: 'pending']
+  total decimal(12,2)
+  created_at timestamp [default: `now()`]
+}
+
+Table order_items {
+  id int [pk, increment]
+  order_id int [ref: > orders.id, not null]
+  product_id int [ref: > products.id, not null]
+  quantity int [default: 1, not null]
+  unit_price decimal(10,2) [not null]
+}
