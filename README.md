@@ -8,7 +8,7 @@ The project includes:
 
 - A full **e-commerce relational schema**
 - The original **DBML source (`schema.dbml`)**
-- **Generated PostgreSQL DDL (`schema_postgres.sql`)**
+- **Generated PostgreSQL DDL (`schema_postgres.sql`) using dbdiagram.io**
 - A runnable **Postgres environment using Docker**
 - Example queries to confirm schema correctness
 
