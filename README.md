@@ -16,8 +16,6 @@ The project includes:
 
 ## 🧩 Schema Overview
 
-This schema models a small but realistic e-commerce system.
-
 ### 1. users
 Stores customer account data.
 
