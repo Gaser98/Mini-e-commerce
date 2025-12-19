@@ -1,6 +1,6 @@
 # Mini-e-commerce Project
 
-# Database Design Project – E-Commerce Schema (DBML → SQL)
+# Database Design – E-Commerce Schema (DBML → SQL)
 
 This project demonstrates a complete workflow for designing a relational database schema using **DBML**, exporting it to **PostgreSQL SQL**, and validating it inside a running **Postgres container via Docker**.
 
@@ -183,7 +183,91 @@ This project demonstrates:
 - DBML schema design  
 - SQL DDL generation  
 - Dockerized Postgres setup  
-- Real schema validation  
+- Real schema validation
+
+## 🔌 API Design, Build, and Testing
+
+To validate that the database schema is usable in a real application context, a **minimal REST API** was implemented on top of the database.
+
+The API is intentionally lightweight and exists to **prove the correctness of the schema, relationships, and access patterns**, not to provide a full application.
+
+---
+
+### 🧱 API Stack
+
+- **Go (Gin)** – HTTP routing and middleware  
+- **PostgreSQL** – database (Dockerized)  
+- **sqlc** – type-safe Go code generated from SQL  
+- **bcrypt** – password hashing  
+- **JWT** – stateless authentication  
+- **Postman** – end-to-end API testing  
+
+---
+
+### 📁 API Structure
+
+```text
+cmd/api/
+  main.go              # API bootstrap
+internal/api/
+  handlers.go          # HTTP endpoints
+  middleware.go        # Authentication middleware
+internal/db/
+  queries.sql          # SQL queries (sqlc input)
+  *.go                 # sqlc-generated code
+
+The API follows a schema-first design: the database schema defines the data model, sqlc generates access code, and the API orchestrates requests on top of it.
+
+### 🔐 Authentication
+
+Users authenticate via POST /login
+
+Passwords are stored as bcrypt hashes in the users table
+
+Successful login returns a JWT
+
+Protected routes require a valid Authorization: Bearer <token> header
+
+Authentication is enforced centrally via middleware to keep handlers simple and consistent.
+
+## 📌 API Endpoints
+
+| Endpoint        | Auth | Description                               |
+|-----------------|------|-------------------------------------------|
+| POST /login     | No   | Authenticate user and issue JWT            |
+| GET /users/me   | Yes  | Return authenticated user identity         |
+| GET /products   | No   | Public product listing                     |
+| POST /orders    | Yes  | Create order for authenticated user        |
+| GET /orders     | Yes  | List authenticated user’s orders           |
+
+---
+
+## 🧪 API Testing
+
+
+The API was tested using **curl** against the running Dockerized PostgreSQL instance.
+
+Validated scenarios include:
+
+- successful and failed authentication
+- access to protected routes with and without JWT
+- real database reads and writes
+
+Example commands used for testing:
+
+```bash
+# Login
+curl -X POST http://localhost:8080/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"tia.gimmy@gmail.com","password":"password123!"}'
+
+# Access protected endpoint
+curl http://localhost:8080/users/me \
+  -H "Authorization: Bearer <JWT_TOKEN>"r:
+
+```image
+![image.png](attachment:8523d238-0c08-471c-8f13-9d8b8b3c7fda:image.png)
+![image.png](attachment:629763d4-6d31-48d3-9700-5da7e34c873d:image.png)
 
 
 
