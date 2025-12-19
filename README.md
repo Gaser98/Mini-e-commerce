@@ -218,17 +218,20 @@ internal/db/
 
 The API follows a schema-first design: the database schema defines the data model, sqlc generates access code, and the API orchestrates requests on top of it.
 
-### 🔐 Authentication
 
-Users authenticate via POST /login
+---
 
-Passwords are stored as bcrypt hashes in the users table
+```markdown
+## 🔐 Authentication
 
-Successful login returns a JWT
-
-Protected routes require a valid Authorization: Bearer <token> header
+- Users authenticate via `POST /login`
+- Passwords are stored as **bcrypt hashes** in the `users` table
+- Successful login returns a **JWT**
+- Protected routes require a valid  
+  `Authorization: Bearer <token>` header
 
 Authentication is enforced centrally via middleware to keep handlers simple and consistent.
+
 
 ## 📌 API Endpoints
 
@@ -270,4 +273,16 @@ curl http://localhost:8080/users/me \
 ![image.png](attachment:629763d4-6d31-48d3-9700-5da7e34c873d:image.png)
 
 
+
+
+---
+
+### ✅ Result section (correct)
+
+```markdown
+## ✅ Result
+
+This API layer completes the workflow from:
+
+**DB design → SQL → Dockerized PostgreSQL → authenticated API → validated behavior**
 
