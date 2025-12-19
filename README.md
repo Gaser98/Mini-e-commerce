@@ -288,6 +288,5 @@ The project demonstrates an end-to-end flow from:
 
 **DBML schema → SQL DDL → Dockerized PostgreSQL → type-safe data access → authenticated API**
 
-This confirms that the schema is not only structurally correct, but also practical and reliable when used by a real backend service.
 
 
