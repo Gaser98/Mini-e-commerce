@@ -268,13 +268,16 @@ curl http://localhost:8080/users/me \
   -H "Authorization: Bearer <JWT_TOKEN>"r:
 
 ```
-**Login – Successful Authentication**
-
-![Login Success](docs/screenshots/login-success.png)
-
 **Access Protected Endpoint**
 
-![Users Me](docs/screenshots/users-me.png)
+![server-access](docs/server-access.png)
+
+
+**Login – Successful Authentication**
+
+![successful-login](docs/successful-login.png)
+
+
 
 
 
