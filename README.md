@@ -268,7 +268,7 @@ curl http://localhost:8080/users/me \
   -H "Authorization: Bearer <JWT_TOKEN>"r:
 
 ```
-**Access Protected Endpoint**
+**Server Access**
 
 ![server-access](docs/server-access.png)
 
