@@ -267,12 +267,16 @@ curl -X POST http://localhost:8080/login \
 curl http://localhost:8080/users/me \
   -H "Authorization: Bearer <JWT_TOKEN>"r:
 
-```image
-![image.png](attachment:8523d238-0c08-471c-8f13-9d8b8b3c7fda:image.png)
-![image.png](attachment:629763d4-6d31-48d3-9700-5da7e34c873d:image.png)
+**Login – Successful Authentication**
+
+![Login Success](docs/screenshots/login-success.png)
+
+**Access Protected Endpoint**
+
+![Users Me](docs/screenshots/users-me.png)
 
 
-```
+
 
 ---
 
