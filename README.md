@@ -272,7 +272,7 @@ curl http://localhost:8080/users/me \
 ![image.png](attachment:629763d4-6d31-48d3-9700-5da7e34c873d:image.png)
 
 
-
+```
 
 ---
 
