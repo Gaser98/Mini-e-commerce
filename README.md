@@ -267,6 +267,7 @@ curl -X POST http://localhost:8080/login \
 curl http://localhost:8080/users/me \
   -H "Authorization: Bearer <JWT_TOKEN>"r:
 
+```
 **Login – Successful Authentication**
 
 ![Login Success](docs/screenshots/login-success.png)
