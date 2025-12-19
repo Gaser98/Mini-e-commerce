@@ -218,7 +218,7 @@ internal/db/
 
 The API follows a schema-first design: the database schema defines the data model, sqlc generates access code, and the API orchestrates requests on top of it.
 
-
+```
 ---
 
 ## 🔐 Authentication
