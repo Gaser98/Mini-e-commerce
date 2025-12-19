@@ -278,8 +278,7 @@ curl http://localhost:8080/users/me \
 
 
 
-```
----
+
 
 ## ✅ Result
 
