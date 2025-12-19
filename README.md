@@ -221,7 +221,6 @@ The API follows a schema-first design: the database schema defines the data mode
 
 ---
 
-```markdown
 ## 🔐 Authentication
 
 - Users authenticate via `POST /login`
@@ -277,9 +276,6 @@ curl http://localhost:8080/users/me \
 
 ---
 
-### ✅ Result section (correct)
-
-```markdown
 ## ✅ Result
 
 This API layer completes the workflow from:
