@@ -283,7 +283,12 @@ curl http://localhost:8080/users/me \
 
 ## ✅ Result
 
-This API layer completes the workflow from:
+This API layer validates the database design by exercising real application workflows, including authentication, authorization, and transactional data access.
 
-**DB design → SQL → Dockerized PostgreSQL → authenticated API → validated behavior**
+The project demonstrates an end-to-end flow from:
+
+**DBML schema → SQL DDL → Dockerized PostgreSQL → type-safe data access → authenticated API**
+
+This confirms that the schema is not only structurally correct, but also practical and reliable when used by a real backend service.
+
 
