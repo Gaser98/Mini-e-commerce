@@ -400,16 +400,10 @@ router.Run(":8080")
 
 CORS support was added to allow the browser-hosted frontend to call the API.
 
-Handled centrally to avoid duplication in handlers:
 
- -Allows Authorization headers
- 
- -Supports preflight OPTIONS requests
- 
- -Enables cross-origin requests safely
 ### 3️⃣ Authentication via Middleware
 
-Middleware enforces JWT authentication so handlers can focus on business logics implemented via defined routes and endpoints.
+Middleware enforces JWT authentication so handlers can focus on business logic implemented via defined routes and endpoints.
 
 
 ### 4️⃣ Schema-First Database Access
