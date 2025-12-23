@@ -291,5 +291,104 @@ The project demonstrates an end-to-end flow from:
 
 **DBML schema → SQL DDL → Dockerized PostgreSQL → type-safe data access → authenticated API**
 
+---
+
+## ☁️ Infrastructure & Deployment Overview
+
+This phase of the project includes a complete, production-oriented infrastructure to deploy the e-commerce application using AWS managed services and Kubernetes.
+
+The infrastructure is provisioned using **Terraform** and consists of:
+
+### Core Components
+
+- **VPC**
+  - Public subnets for internet-facing components
+  - Private subnets for EKS worker nodes
+  - Isolated private subnets for RDS
+
+- **Amazon EKS**
+  - Managed Kubernetes control plane
+  - Managed node groups running in private subnets
+  - Public and private API endpoint access enabled
+  - IAM authentication configured via `aws-auth` ConfigMap
+
+- **Amazon RDS (PostgreSQL)**
+  - Private database instance
+  - Accessible only from EKS node security group
+  - Used by the Go API as the primary datastore
+
+- **S3 + CloudFront (Frontend)**
+  - Static frontend hosted in S3
+  - CloudFront used for global CDN, TLS, and security
+  - Frontend communicates with the API via HTTPS
+
+This separation enforces:
+- Network isolation
+- Least-privilege access
+- Clear boundaries between frontend, API, and database
+
+## ✅ Result
+
+![eks-deployment-outputs(docs/eks-deployment-outputs.png)
+
+kubectl get nodes
+NAME                         STATUS   ROLES    AGE   VERSION
+ip-10-0-1-159.ec2.internal   Ready    <none>   20m   v1.29.15-eks-ecaa3a6
+ip-10-0-2-69.ec2.internal    Ready    <none>   20m   v1.29.15-eks-ecaa3a6
+
+---
+
+## 🚀 API Deployment on EKS
+
+The Go API is deployed as a containerized service running inside the EKS cluster.
+
+### Deployment Flow
+
+1. **Go API is containerized**
+   - Multi-stage Docker build
+   - Minimal runtime image
+   - Exposes port `8080`
+
+2. **Image pushed to Amazon ECR**
+   - Used as the image source for Kubernetes pods
+
+3. **Kubernetes Deployment**
+   - Runs multiple API replicas for availability
+   - Environment variables injected via Kubernetes Secrets
+   - Database connection string points to the RDS endpoint
+
+4. **Kubernetes Service**
+   - Exposes the API internally inside the cluster
+
+5. **Ingress (ALB)**
+   - Application Load Balancer exposes the API publicly
+   - Frontend communicates with the API via the ALB DNS name
+
+6. **CORS enabled**
+   - Allows browser-based frontend to access the API securely
+
+This setup enables horizontal scaling, rolling updates, and safe separation of concerns.
+
+---
+
+## 🔧 API Code Changes for Deployment
+
+To support deployment on EKS and integration with the frontend, a few targeted changes were made to the API codebase.
+
+### 1️⃣ Centralized Server Bootstrap (`cmd/api/main.go`)
+
+- Database connection is created once and injected into handlers
+- Environment variables are used for:
+  - `DATABASE_URL`
+  - `JWT_SECRET`
+- Global middleware is registered at startup
+
+```go
+router := gin.Default()
+router.Use(corsMiddleware)
+api.RegisterRoutes(router, queries)
+router.Run(":8080")
+
+
 
 
