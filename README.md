@@ -391,8 +391,9 @@ router := gin.Default()
 router.Use(corsMiddleware)
 api.RegisterRoutes(router, queries)
 router.Run(":8080")
+```
 
-2️⃣ CORS Middleware Added
+### 2️⃣ CORS Middleware Added
 
 CORS support was added to allow the browser-hosted frontend to call the API.
 
@@ -403,7 +404,7 @@ Handled centrally to avoid duplication in handlers:
  -Supports preflight OPTIONS requests
  
  -Enables cross-origin requests safely
-3️⃣ Authentication via Middleware
+### 3️⃣ Authentication via Middleware
 
 JWT authentication is enforced using middleware
 
@@ -413,7 +414,7 @@ Keeps handlers focused on business logic
 auth := r.Group("/")
 auth.Use(AuthMiddleware())
 
-4️⃣ Schema-First Database Access
+### 4️⃣ Schema-First Database Access
 
  -Database schema defines the data model
  
