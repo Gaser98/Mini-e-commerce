@@ -409,30 +409,13 @@ Handled centrally to avoid duplication in handlers:
  -Enables cross-origin requests safely
 ### 3️⃣ Authentication via Middleware
 
-JWT authentication is enforced using middleware
+Middleware enforces JWT authentication so handlers can focus on business logics implemented via defined routes and endpoints.
 
-Protected routes are grouped under an authenticated router
-
-Keeps handlers focused on business logic
-auth := r.Group("/")
-auth.Use(AuthMiddleware())
 
 ### 4️⃣ Schema-First Database Access
 
- -Database schema defines the data model
- 
- -SQL queries are written explicitly
- 
- -sqlc generates type-safe Go code
+ Database schema defines the data model,sqlc generates type-safe Go code and handlers use generated queries.
 
-Handlers use generated queries instead of raw SQL
 
-This ensures:
-
- -Compile-time safety
- 
- -No runtime SQL string errors
- 
- -Clean separation between API and database layers
 
 
