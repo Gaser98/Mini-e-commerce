@@ -331,7 +331,10 @@ This separation enforces:
 
 ![eks-deployment-outputs](docs/eks-deployment-outputs.png)
 
+
 kubectl get nodes
+
+
 NAME                         STATUS   ROLES    AGE   VERSION
 ip-10-0-1-159.ec2.internal   Ready    <none>   20m   v1.29.15-eks-ecaa3a6
 ip-10-0-2-69.ec2.internal    Ready    <none>   20m   v1.29.15-eks-ecaa3a6
