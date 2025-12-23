@@ -163,16 +163,7 @@ ALTER TABLE
 (2 rows)
 ```
 
----
 
-## 📝 Files in This Project
-
-```
-schema.dbml
-schema_postgres.sql
-docker-compose.yml
-README.md
-```
 
 ---
 
@@ -199,12 +190,12 @@ The API is intentionally lightweight and exists to **prove the correctness of th
 - **PostgreSQL** – database (Dockerized)  
 - **sqlc** – type-safe Go code generated from SQL  
 - **bcrypt** – password hashing  
-- **JWT** – stateless authentication  
-- **Postman** – end-to-end API testing  
-
+- **JWT** – stateless authentication   
 ---
 
 ### 📁 API Structure
+
+The API follows a schema-first design: the database schema defines the data model, sqlc generates access code, and the API orchestrates requests on top of it.
 
 ```text
 cmd/api/
@@ -216,7 +207,6 @@ internal/db/
   queries.sql          # SQL queries (sqlc input)
   *.go                 # sqlc-generated code
 
-The API follows a schema-first design: the database schema defines the data model, sqlc generates access code, and the API orchestrates requests on top of it.
 
 ```
 ---
