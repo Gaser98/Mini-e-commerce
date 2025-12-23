@@ -34,4 +34,5 @@ func AuthMiddleware() gin.HandlerFunc {
 		c.Set("user_id", int32(claims["sub"].(float64)))
 		c.Next()
 	}
+	
 }
