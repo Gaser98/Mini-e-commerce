@@ -329,12 +329,15 @@ This separation enforces:
 
 ## ✅ Result
 
-![eks-deployment-outputs(docs/eks-deployment-outputs.png)
+![eks-deployment-outputs](docs/eks-deployment-outputs.png)
 
 kubectl get nodes
 NAME                         STATUS   ROLES    AGE   VERSION
 ip-10-0-1-159.ec2.internal   Ready    <none>   20m   v1.29.15-eks-ecaa3a6
 ip-10-0-2-69.ec2.internal    Ready    <none>   20m   v1.29.15-eks-ecaa3a6
+
+
+![successful-frontend-deployment](docs/successful-frontend-deployment.png)
 
 ---
 
@@ -389,6 +392,43 @@ router.Use(corsMiddleware)
 api.RegisterRoutes(router, queries)
 router.Run(":8080")
 
+2️⃣ CORS Middleware Added
 
+CORS support was added to allow the browser-hosted frontend to call the API.
+
+Handled centrally to avoid duplication in handlers:
+
+ -Allows Authorization headers
+ 
+ -Supports preflight OPTIONS requests
+ 
+ -Enables cross-origin requests safely
+3️⃣ Authentication via Middleware
+
+JWT authentication is enforced using middleware
+
+Protected routes are grouped under an authenticated router
+
+Keeps handlers focused on business logic
+auth := r.Group("/")
+auth.Use(AuthMiddleware())
+
+4️⃣ Schema-First Database Access
+
+ -Database schema defines the data model
+ 
+ -SQL queries are written explicitly
+ 
+ -sqlc generates type-safe Go code
+
+Handlers use generated queries instead of raw SQL
+
+This ensures:
+
+ -Compile-time safety
+ 
+ -No runtime SQL string errors
+ 
+ -Clean separation between API and database layers
 
 
