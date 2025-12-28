@@ -34,9 +34,9 @@ func RegisterRoutes(r *gin.Engine, q *db.Queries) {
 			c.Status(http.StatusUnauthorized)
 			return
 		}
-		#debug logs were hashed after finishing the debuging 
-		#fmt.Println("DEBUG DB HASH:", user.PasswordHash)
-		#fmt.Println("DEBUG INPUT PASSWORD:", req.Password)
+		/*debug logs were hashed after finishing the debuging 
+		fmt.Println("DEBUG DB HASH:", user.PasswordHash)
+		fmt.Println("DEBUG INPUT PASSWORD:", req.Password)*/
 
 		if err := bcrypt.CompareHashAndPassword(
 			[]byte(user.PasswordHash),
