@@ -34,6 +34,7 @@ func RegisterRoutes(r *gin.Engine, q *db.Queries) {
 			c.Status(http.StatusUnauthorized)
 			return
 		}
+		
 		/*debug logs were hashed after finishing the debuging 
 		fmt.Println("DEBUG DB HASH:", user.PasswordHash)
 		fmt.Println("DEBUG INPUT PASSWORD:", req.Password)*/
@@ -75,17 +76,21 @@ func RegisterRoutes(r *gin.Engine, q *db.Queries) {
 
 	// ---------- PRODUCTS ----------
 	r.GET("/products", func(c *gin.Context) {
-		products, err := q.ListAvailableProducts(c, db.ListAvailableProductsParams{
-			Limit:  10,
-			Offset: 0,
-		})
-		if err != nil {
-			c.Status(http.StatusInternalServerError)
-			return
-		}
-
-		c.JSON(http.StatusOK, products)
+	products, err := q.ListAvailableProducts(c, db.ListAvailableProductsParams{
+		Limit:  10,
+		Offset: 0,
 	})
+
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, products)
+})
+
 
 	r.GET("/products/:id", func(c *gin.Context) {
 		id := mustAtoi(c.Param("id"))
