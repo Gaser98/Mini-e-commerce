@@ -1,4 +1,5 @@
 # Mini-e-commerce Project
+Designed a complete e-commerce platform starting from DBML-based relational schema design through Dockerized PostgreSQL, and delivered a production-grade cloud deployment using Terraform, EKS, and RDS.
 
 # Database Design – E-Commerce Schema (DBML → SQL)
 
