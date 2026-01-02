@@ -353,14 +353,11 @@ The Go API is deployed as a containerized service running inside the EKS cluster
    - Environment variables injected via Kubernetes Secrets
    - Database connection string points to the RDS endpoint
 
-4. **Kubernetes Service**
-   - Exposes the API internally inside the cluster
-
-5. **Ingress (ALB)**
+4. **Ingress (ALB)**
    - Application Load Balancer exposes the API publicly
    - Frontend communicates with the API via the ALB DNS name
 
-6. **CORS enabled**
+5. **CORS enabled**
    - Allows browser-based frontend to access the API securely
 
 This setup enables horizontal scaling, rolling updates, and safe separation of concerns.
