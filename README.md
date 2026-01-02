@@ -301,14 +301,13 @@ The infrastructure is provisioned using **Terraform** and consists of:
 
 - **VPC**
   - Public subnets for internet-facing components
-  - Private subnets for EKS worker nodes
-  - Isolated private subnets for RDS
+  - Private subnets for EKS worker nodes & RDS
 
 - **Amazon EKS**
   - Managed Kubernetes control plane
   - Managed node groups running in private subnets
   - Public and private API endpoint access enabled
-  - IAM authentication configured via `aws-auth` ConfigMap
+    
 
 - **Amazon RDS (PostgreSQL)**
   - Private database instance
