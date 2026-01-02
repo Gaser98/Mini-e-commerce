@@ -287,6 +287,8 @@ The project demonstrates an end-to-end flow from:
 ## ☁️ Infrastructure & Deployment Overview
 
 This phase of the project includes a complete, production-oriented infrastructure to deploy the e-commerce application using AWS managed services and Kubernetes.
+
+
 **Architecture Diagram**
 
 ![deployment architecture diagram](docs/deployment-architecture-diagram.jpeg)
