@@ -2,9 +2,9 @@
 
 # Database Design – E-Commerce Schema (DBML → SQL)
 
-This project demonstrates a complete workflow for designing a relational database schema using **DBML**, exporting it to **PostgreSQL SQL**, and validating it inside a running **Postgres container via Docker**.
+This phase demonstrates a complete workflow for designing a relational database schema using **DBML**, exporting it to **PostgreSQL SQL**, and validating it inside a running **Postgres container via Docker**.
 
-The project includes:
+It includes:
 
 - A full **e-commerce relational schema**
 - The original **DBML source (`schema.dbml`)**
@@ -353,7 +353,7 @@ The Go API is deployed as a containerized service running inside the EKS cluster
    - Environment variables injected via Kubernetes Secrets
    - Database connection string points to the RDS endpoint
 
-4. **Ingress (ALB)**
+4. **ALB**
    - Application Load Balancer exposes the API publicly
    - Frontend communicates with the API via the ALB DNS name
 
