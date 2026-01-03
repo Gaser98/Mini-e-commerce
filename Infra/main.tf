@@ -148,9 +148,10 @@ module "eks" {
   # 🔑 THIS IS THE ONLY ACCESS FLAG YOU NEED
   enable_cluster_creator_admin_permissions = true
 
-  cluster_endpoint_public_access        = true
+  cluster_endpoint_public_access        = true  /*or false and use a bastion host*/
   cluster_endpoint_private_access       = true
-  cluster_endpoint_public_access_cidrs  = ["0.0.0.0/0"]
+  cluster_endpoint_public_access_cidrs  = ["MY_IP/32"] 
+
 
   eks_managed_node_groups = {
     default = {
